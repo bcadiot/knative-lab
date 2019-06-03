@@ -1,0 +1,22 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: helloworld
+  namespace: default
+spec:
+  template:
+    metadata:
+      name: helloworld-pcd
+    spec:
+      containers:
+        - image: gcr.io/knative-samples/helloworld-go
+          env:
+            - name: "TARGET"
+              value: "Paris Container Day"
+  traffic:
+  - tag: current
+    revisionName: helloworld-world
+    percent: 50
+  - tag: candidate
+    revisionName: helloworld-pcd
+    percent: 50

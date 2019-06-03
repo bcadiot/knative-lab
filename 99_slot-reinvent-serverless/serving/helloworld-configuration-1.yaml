@@ -1,0 +1,15 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Configuration
+metadata:
+  name: helloworld
+  namespace: default
+spec:
+  template:
+    metadata:
+      name: helloworld-world
+    spec:
+      containers:
+        - image: gcr.io/knative-samples/helloworld-go
+          env:
+            - name: "TARGET"
+              value: "World"

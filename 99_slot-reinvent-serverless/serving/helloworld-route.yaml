@@ -1,0 +1,13 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Route
+metadata:
+  name: helloworld
+  namespace: default
+spec:
+  traffic:
+    - tag: world
+      revisionName: helloworld-world
+      percent: 50
+    - tag: pcd
+      revisionName: helloworld-pcd
+      percent: 50
