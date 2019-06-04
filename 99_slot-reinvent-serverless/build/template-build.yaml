@@ -6,7 +6,7 @@ spec:
   # serviceAccountName: build-bot
   source:
     git:
-      url: https://github.com/dgageot/hello.git
+      url: https://github.com/bcadiot/hello-go.git
       revision: master
   template:
     name: kaniko
