@@ -46,7 +46,19 @@ resource "google_container_node_pool" "cluster-np1" {
       "https://www.googleapis.com/auth/servicecontrol",
     ]
 
+    service_account = "${google_service_account.gke_knative.email}"
+
     image_type   = "COS"
-    machine_type = "n1-standard-1"
+    machine_type = "n1-standard-2"
   }
+}
+
+resource "google_service_account" "gke_knative" {
+  account_id   = "gke-knative"
+  display_name = "gke-knative"
+}
+
+resource "google_project_iam_member" "gke_sf_storage" {
+  role    = "roles/storage.admin"
+  member  = "serviceAccount:${google_service_account.gke_knative.email}"
 }
